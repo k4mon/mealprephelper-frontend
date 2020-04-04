@@ -1,0 +1,16 @@
+.RecipeItem {
+    width: 80%;
+    background-color: #ddddee;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.RecipeName {
+    width: 25%;
+}
+
+.RecipeLink {
+    width: 25%;
+}
+
