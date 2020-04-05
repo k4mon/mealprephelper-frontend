@@ -16,8 +16,10 @@ const RecipesList = (props) => {
             }
             return <ActiveRecipeItem isEdited={props.isEdited}
                                      key={recipeKey}
+                                     recipeKey={recipeKey}
                                      onEditClick={props.onEditClick}
                                      onCloseClick={props.onCloseClick}
+                                     onDeleteClick={props.onDeleteClick}
                                      {...props.recipes[recipeKey]}/>
         } else {
             return <RecipeItem key={recipeKey}

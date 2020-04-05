@@ -38,6 +38,20 @@ class Recipes extends Component {
             });
     }
 
+    removeRecipe = (recipeKey) => {
+        axios.delete("http://localhost:5555/recipes/" + recipeKey)
+            .then(response => {
+                axios.get("http://localhost:5555/recipes/")
+                    .then(response => {
+                        this.setState({
+                            isEdited: false,
+                            openRecipe: null,
+                            recipes: response.data
+                        })
+                    });
+            });
+    }
+
     cancelCreation = () => {
         axios.get("http://localhost:5555/recipes/")
             .then(response => {
@@ -65,7 +79,7 @@ class Recipes extends Component {
                 <RecipesList openRecipe={this.state.openRecipe} recipes={this.state.recipes}
                              onRecipeClick={this.openActiveRecipeItem} onEditClick={this.openEditView}
                              onCloseClick={this.closeRecipe} onCancelClick={this.cancelEdit}
-                             isEdited={this.state.isEdited}/>
+                             isEdited={this.state.isEdited} onDeleteClick={this.removeRecipe}/>
             </React.Fragment>
         );
     }

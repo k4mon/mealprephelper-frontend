@@ -9,6 +9,7 @@ const ActiveRecipeItem = (props) => {
             <a href={props.link}>{props.link}</a>
             <RecipeTypes recipeTypes={props.recipe_types}/>
             <button onClick={props.onEditClick}>EDIT</button>
+            <button onClick={() => {props.onDeleteClick(props.recipeKey)}}>DELETE</button>
             <button onClick={props.onCloseClick}>CLOSE</button>
         </div>
     );
