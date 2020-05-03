@@ -1,5 +1,5 @@
 const getAuthHeaders = () => {
-  return localStorage.getItem("currentUser") ? { Authorization: `Bearer ${localStorage.getItem("currentUser").access_token}`} : {}
+  return localStorage.getItem("currentUser") ? { Authorization: `Bearer ${JSON.parse(localStorage.getItem("currentUser")).data.access_token}`} : {}
 }
 
 export default getAuthHeaders;
