@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import axios from "axios";
+import axios from 'axios';
+import getAuthHeaders from "../../services/authHeaders";
 import AddRecipeButton from "../../components/Recipes/AddRecipeButton/AddRecipeButton";
 import RecipesList from "../../components/Recipes/RecipesList/RecipesList";
 import EditableRecipeItem from "../../components/Recipes/RecipesList/EditableRecipeItem/EditableRecipeItem";
@@ -29,7 +30,7 @@ class Recipes extends Component {
     }
 
     cancelEdit = () => {
-        axios.get("http://localhost:5555/recipes/")
+        axios.get("http://localhost:5555/recipes/", {headers: getAuthHeaders()})
             .then(response => {
                 this.setState({
                     isEdited: false,
@@ -39,9 +40,9 @@ class Recipes extends Component {
     }
 
     removeRecipe = (recipeKey) => {
-        axios.delete("http://localhost:5555/recipes/" + recipeKey)
+        axios.delete("http://localhost:5555/recipes/" + recipeKey, {headers: getAuthHeaders()})
             .then(response => {
-                axios.get("http://localhost:5555/recipes/")
+                axios.get("http://localhost:5555/recipes/", {headers: getAuthHeaders()})
                     .then(response => {
                         this.setState({
                             isEdited: false,
@@ -53,7 +54,7 @@ class Recipes extends Component {
     }
 
     cancelCreation = () => {
-        axios.get("http://localhost:5555/recipes/")
+        axios.get("http://localhost:5555/recipes/", {headers: getAuthHeaders()})
             .then(response => {
                 this.setState({
                     newRecipe: false,
@@ -63,14 +64,14 @@ class Recipes extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:5555/recipes/")
+        axios.get("http://localhost:5555/recipes/", {headers: getAuthHeaders()})
             .then(response => {
                 this.setState({recipes: response.data});
-            });
+            })
+            .catch((error) => {});
     }
 
     render() {
-        console.log(this.state);
         return (
             <React.Fragment>
                 <AddRecipeButton newRecipe={this.openNewRecipeItem}/>

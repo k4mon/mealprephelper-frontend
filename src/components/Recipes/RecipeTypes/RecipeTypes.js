@@ -11,7 +11,7 @@ export const STYLES = {
 
 const RecipeTypes = (props) => {
     const recipeTypes = props.recipeTypes.map(recipeType => {
-        return <RecipeType key={recipeType} recipeType={recipeType} onClick={() => {}} color={STYLES[recipeType]}/>
+        return <RecipeType key={recipeType.id} recipeType={recipeType.name} onClick={() => {}} color={recipeType.color}/>
     })
 
     return (

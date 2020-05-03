@@ -13,9 +13,11 @@
     display: block;
 }
 
-.NavigationItem a:hover,
-.NavigationItem a:active,
-.NavigationItem a.active {
+.NavigationItem a:hover {
+    color: rgb(121, 64, 200);
+}
+
+.ActiveNavigationItem {
     color: rgb(121, 64, 200);
 }
 
@@ -36,9 +38,13 @@
         border-bottom: 4px solid transparent;
     }
 
-    .NavigationItem a:hover,
-    .NavigationItem a:active,
-    .NavigationItem a.active {
+    .NavigationItem a:hover {
+        background-color: rgb(69, 143, 44);
+        border-bottom: 4px solid #40A4C8;
+        color: white;
+    }
+
+    .ActiveNavigationItem {
         background-color: rgb(69, 143, 44);
         border-bottom: 4px solid #40A4C8;
         color: white;
