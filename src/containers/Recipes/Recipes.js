@@ -64,7 +64,6 @@ class Recipes extends Component {
     }
 
     componentDidMount() {
-        console.log(process.env.REACT_APP_BACKEND_URL);
         axiosBaseInstance.get("recipes/", {headers: getAuthHeaders()})
             .then(response => {
                 this.setState({recipes: response.data});

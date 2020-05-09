@@ -20,7 +20,6 @@ class Login extends Component {
                 this.props.history.push("/");
             })
             .catch(error => {
-                console.log(error);
                 this.setState({
                     password: '',
                     invalidLogin: true
@@ -30,7 +29,6 @@ class Login extends Component {
 
     render() {
         const shouldRenderAccountCreated = this.props.location.state && this.props.location.state.fromRegister
-        console.log(process.env.REACT_APP_BACKEND_URL);
         return (
             <React.Fragment>
                 {shouldRenderAccountCreated && <div>Account created successfully</div>}
