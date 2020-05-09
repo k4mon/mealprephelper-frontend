@@ -9,14 +9,15 @@ const RecipesList = (props) => {
         if (recipeKey === props.openRecipe) {
             if (props.isEdited) {
                 return <EditableRecipeItem key={recipeKey}
-                                           recipeKey={recipeKey}
+                                           recipeKey={props.recipes[recipeKey].id}
                                            onSaveClick={props.onSaveClick}
                                            onCancelClick={props.onCancelClick}
-                                           {...props.recipes[recipeKey]}/>
+                                           {...props.recipes[recipeKey]}
+                                           recipe_types={props.recipes[recipeKey].recipe_types.map(recipe_type => recipe_type.name)}/>
             }
             return <ActiveRecipeItem isEdited={props.isEdited}
                                      key={recipeKey}
-                                     recipeKey={recipeKey}
+                                     recipeKey={props.recipes[recipeKey].id}
                                      onEditClick={props.onEditClick}
                                      onCloseClick={props.onCloseClick}
                                      onDeleteClick={props.onDeleteClick}

@@ -6,10 +6,10 @@ class Layout extends Component {
     render() {
         return (
             <React.Fragment>
-                <main className={styleClasses.Content}>
-                    <Toolbar/>
+                <div className={styleClasses.Content}>
+                    <Toolbar isAuth={this.props.isAuthenticated}/>
                     {this.props.children}
-                </main>
+                </div>
             </React.Fragment>
         );
     }

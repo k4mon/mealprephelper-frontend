@@ -16,6 +16,7 @@ class Login extends Component {
         axios.post('http://localhost:5555/token/', data, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
             .then(response => {
                 localStorage.setItem('currentUser', JSON.stringify(response));
+                this.props.onUserAuthChange();
                 this.props.history.push("/");
             })
             .catch(error => {

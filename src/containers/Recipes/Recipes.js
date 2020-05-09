@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios';
-import getAuthHeaders from "../../services/authHeaders";
+import {getAuthHeaders} from "../../services/auth";
 import AddRecipeButton from "../../components/Recipes/AddRecipeButton/AddRecipeButton";
 import RecipesList from "../../components/Recipes/RecipesList/RecipesList";
 import EditableRecipeItem from "../../components/Recipes/RecipesList/EditableRecipeItem/EditableRecipeItem";

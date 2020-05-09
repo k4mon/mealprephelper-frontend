@@ -1,12 +1,12 @@
 import React from "react";
-import {STYLES} from "../RecipeTypes";
 import RecipeType from "../RecipeType/RecipeType";
 
 const EditableRecipeTypes = (props) => {
-    const editableRecipeTypes = Object.keys(STYLES).map(recipeType => {
-        const color = props.recipeTypes.indexOf(recipeType) > -1 ? STYLES[recipeType] : "#aaaaaa"
-        return <RecipeType key={recipeType} recipeType={recipeType} onClick={() => {
-            props.flipRecipeType(recipeType)
+    console.log(props.allRecipeTypes)
+    const editableRecipeTypes = props.allRecipeTypes.map(recipeType => {
+        const color = props.recipeTypes.indexOf(recipeType.name) > -1 ? recipeType.color : "#aaaaaa"
+        return <RecipeType key={recipeType.id} recipeType={recipeType.name} onClick={() => {
+            props.flipRecipeType(recipeType.name)
         }} color={color}/>
     })
 
