@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import axios from 'axios';
+import axiosBaseInstance from '../../services/axios-instances';
 import {getAuthHeaders} from "../../services/auth";
 import AddRecipeButton from "../../components/Recipes/AddRecipeButton/AddRecipeButton";
 import RecipesList from "../../components/Recipes/RecipesList/RecipesList";
@@ -30,7 +30,7 @@ class Recipes extends Component {
     }
 
     cancelEdit = () => {
-        axios.get("http://localhost:5555/recipes/", {headers: getAuthHeaders()})
+        axiosBaseInstance.get("recipes/", {headers: getAuthHeaders()})
             .then(response => {
                 this.setState({
                     isEdited: false,
@@ -40,9 +40,9 @@ class Recipes extends Component {
     }
 
     removeRecipe = (recipeKey) => {
-        axios.delete("http://localhost:5555/recipes/" + recipeKey, {headers: getAuthHeaders()})
+        axiosBaseInstance.delete("recipes/" + recipeKey, {headers: getAuthHeaders()})
             .then(response => {
-                axios.get("http://localhost:5555/recipes/", {headers: getAuthHeaders()})
+                axiosBaseInstance.get("recipes/", {headers: getAuthHeaders()})
                     .then(response => {
                         this.setState({
                             isEdited: false,
@@ -54,7 +54,7 @@ class Recipes extends Component {
     }
 
     cancelCreation = () => {
-        axios.get("http://localhost:5555/recipes/", {headers: getAuthHeaders()})
+        axiosBaseInstance.get("recipes/", {headers: getAuthHeaders()})
             .then(response => {
                 this.setState({
                     newRecipe: false,
@@ -64,7 +64,8 @@ class Recipes extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:5555/recipes/", {headers: getAuthHeaders()})
+        console.log(process.env.REACT_APP_BACKEND_URL);
+        axiosBaseInstance.get("recipes/", {headers: getAuthHeaders()})
             .then(response => {
                 this.setState({recipes: response.data});
             })

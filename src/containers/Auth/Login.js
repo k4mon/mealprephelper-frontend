@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axiosBaseInstance from '../../services/axios-instances';
 import { Link } from 'react-router-dom';
 
 class Login extends Component {
@@ -13,7 +13,7 @@ class Login extends Component {
         event.preventDefault();
         const data = new FormData(event.target);
 
-        axios.post('http://localhost:5555/token/', data, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
+        axiosBaseInstance.post('token/', data, { headers: { "Content-Type": "application/x-www-form-urlencoded" } })
             .then(response => {
                 localStorage.setItem('currentUser', JSON.stringify(response));
                 this.props.onUserAuthChange();
@@ -30,6 +30,7 @@ class Login extends Component {
 
     render() {
         const shouldRenderAccountCreated = this.props.location.state && this.props.location.state.fromRegister
+        console.log(process.env.REACT_APP_BACKEND_URL);
         return (
             <React.Fragment>
                 {shouldRenderAccountCreated && <div>Account created successfully</div>}

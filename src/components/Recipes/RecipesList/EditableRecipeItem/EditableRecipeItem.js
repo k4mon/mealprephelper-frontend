@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import axiosBaseInstance from '../../../../services/axios-instances';
 import {getAuthHeaders} from "../../../../services/auth";
 import styleClasses from "./EditableRecipeItem.module.css"
 import EditableRecipeTypes from "../../RecipeTypes/EditableRecipeTypes/EditableRecipeTypes";
@@ -11,7 +11,7 @@ class EditableRecipeItem extends Component {
     }
 
     initializeRecipeTypes = () => {
-        axios.put("http://localhost:5555/recipes/recipe_types/",
+        axiosBaseInstance.put("recipes/recipe_types/",
             {headers: getAuthHeaders()})
         .then((response) => {
                 this.setState({allRecipeTypes: response.data})
@@ -40,7 +40,7 @@ class EditableRecipeItem extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:5555/recipes/recipe_types/",
+        axiosBaseInstance.get("recipes/recipe_types/",
             {headers: getAuthHeaders()})
         .then(
             (response) => {
@@ -53,7 +53,7 @@ class EditableRecipeItem extends Component {
 
     onSave = () => {
         if (this.state.recipeKey) {
-            axios.put("http://localhost:5555/recipes/" + this.state.recipeKey,
+            axiosBaseInstance.put("recipes/" + this.state.recipeKey,
                 {
                     name: this.state.name,
                     link: this.state.link,
@@ -65,7 +65,7 @@ class EditableRecipeItem extends Component {
                 );
         }
         else {
-            axios.post("http://localhost:5555/recipes/",
+            axiosBaseInstance.post("recipes/",
                 {
                     name: this.state.name,
                     link: this.state.link,

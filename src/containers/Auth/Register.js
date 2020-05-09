@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axiosBaseInstance from '../../services/axios-instances';
 
 class Register extends Component {
     state = {
@@ -14,7 +14,7 @@ class Register extends Component {
             password: this.state.password,
         };
 
-        axios.post('http://localhost:5555/users/', data)
+        axiosBaseInstance.post('users/', data)
             .then(response => {
                 this.props.history.push("/login", {fromRegister: true})
             })
